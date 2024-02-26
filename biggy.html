@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Brand New Laptop Giveaway Countdown Timer</title>
+	<style>
+		body {
+			text-align: center;
+			background-color: #f9f9f9;
+			font-family: Arial, sans-serif;
+			font-size: 2em;
+			margin-top: 10%;
+		}
+		#countdown {
+			font-size: 4em;
+			color: #333;
+		}
+		#laptop-image {
+			width: 50%;
+			margin-bottom: 2em;
+		}
+	</style>
+</head>
+<body>
+	<img id="laptop-image" src="/image of laptop.webp" alt="Brand New Laptop">
+	<h1>Win a Brand New Laptop!</h1>
+	<h2>Giveaway Ends In:</h2>
+	<div id="countdown">00:00:00</div>
+
+	<script>
+		// Set the deadline date and time
+		var deadline = new Date("June 1, 2024 12:00:00").getTime();
+
+		// Update the countdown every second
+		var x = setInterval(function() {
+			// Get the current date and time
+			var now = new Date().getTime();
+
+			// Calculate the remaining time
+			var t = deadline - now;
+
+			// Calculate the days, hours, minutes, and seconds
+			var days = Math.floor(t / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+			var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((t % (1000 * 60)) / 1000);
+
+			// Format the remaining time as a string
+			var formattedTime = ("0" + days).slice(-2) + ":" + ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+
+			// Display the remaining time
+			document.getElementById("countdown").innerHTML = formattedTime;
+
+			// If the deadline has passed, stop the countdown
+			if (t < 0) {
+				clearInterval(x);
+				document.getElementById("countdown").innerHTML = "Giveaway has ended!";
+			}
+		}, 1000);
+	</script>
+</body>
+</html>
